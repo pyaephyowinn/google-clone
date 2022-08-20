@@ -1,10 +1,12 @@
+import { Routes, Route } from "react-router-dom";
+import SearchPage from "./routes/Search";
+
 const App = () => {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
+      <Routes>
+        <Route path="/" element={<p>Home</p>} />
+        <Route path="/search" element={<SearchPage />} />
+      </Routes>
   );
 };
 export default App;
