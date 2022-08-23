@@ -5,8 +5,11 @@ module.exports = {
   theme: {
     extend: {
       maxWidth: {
-        'container': '1440px',
-      }
+        container: "1440px",
+      },
+      colors: {
+        dark: "rgba(32,33,35,255)",
+      },
     },
   },
   plugins: [],

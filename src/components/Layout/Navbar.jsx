@@ -43,8 +43,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full grid grid-cols-12 border-b-2 mb-4">
-      <nav className="col-span-12 md:col-start-3 md:col-span-10 lg:col-start-3 lg:col-span-8 h-fit">
+    <div className="w-full grid grid-cols-12 border-b mb-4 dark:border-gray-600">
+      <nav className="col-span-12 lg:col-start-3 lg:col-span-8 h-fit">
         <ul className="flex">
           <li
             onClick={onAllClick}

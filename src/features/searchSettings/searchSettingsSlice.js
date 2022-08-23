@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const lr = localStorage.getItem("safe");
+
 const initialState = {
-  lr: "lang_en",  // enum 
-  safe: "", // enum
+  lr: "lang_en", // enum
+  safe: lr || "", // enum
   type: "search", // enum
 };
 
@@ -15,10 +17,11 @@ export const searchSettingsSlice = createSlice({
     },
     setSafeMode: (state, action) => {
       state.safe = action.payload;
+      localStorage.setItem("safe", action.payload);
     },
     setType: (state, action) => {
       state.type = action.payload;
-    }
+    },
   },
 });
 

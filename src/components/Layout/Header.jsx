@@ -4,10 +4,14 @@ import { MdSearch, MdOutlineSettings } from "react-icons/md";
 
 const Header = ({ clickSettingHandler }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchTxt, setSearchTxt] = useState("");
+  const [searchTxt, setSearchTxt] = useState(" ");
 
   useEffect(() => {
-    setSearchTxt(searchParams.get("q"));
+    const initialQuery = searchParams.get("q");
+    if (initialQuery) {
+      setSearchTxt(initialQuery);
+    }
+    // setSearchTxt(searchParams.get("q"));
   }, [setSearchTxt, searchParams]);
 
   const onSearchTxtChange = (e) => {
@@ -31,12 +35,12 @@ const Header = ({ clickSettingHandler }) => {
     <div className="w-full h-fit pt-4 mb-6 grid grid-cols-12 items-center gap-4">
       <div className="col-span-2">
         <h1 className="text-3xl md:text-4xl text-center">
-          <span className="text-blue-600">G</span>
-          <span className="text-red-600">o</span>
-          <span className="text-yellow-600">o</span>
-          <span className="text-blue-600">g</span>
-          <span className="text-green-600">l</span>
-          <span className="text-red-600">e</span>
+          <span className="text-blue-600 dark:text-gray-50">G</span>
+          <span className="text-red-600 dark:text-gray-50">o</span>
+          <span className="text-yellow-600 dark:text-gray-50">o</span>
+          <span className="text-blue-600 dark:text-gray-50">g</span>
+          <span className="text-green-600 dark:text-gray-50">l</span>
+          <span className="text-red-600 dark:text-gray-50">e</span>
         </h1>
       </div>
 
@@ -47,20 +51,20 @@ const Header = ({ clickSettingHandler }) => {
         />
       </div>
 
-      <div className="col-span-full sm:col-span-9 md:col-span-7 pl-4 rounded-full border shadow hover:shadow-lg sm:order-1">
+      <div className="col-span-full sm:col-span-9 md:col-span-7 pl-4 rounded-full border shadow hover:shadow-lg sm:order-1 dark:border-gray-600 dark:shadow-gray-900">
         <form onSubmit={onFormSubmit} className="w-full">
           <div className="flex items-center">
             <input
               value={searchTxt}
               onChange={onSearchTxtChange}
               type="text"
-              className="text-lg py-2 px-2 flex-grow focus:outline-none"
+              className="py-2 px-2 flex-grow focus:outline-none dark:bg-dark"
             />
             {searchTxt && (
               <span
                 aria-label="Clear"
                 onClick={onClearClick}
-                className="h-full px-4 py-2 hover:cursor-pointer text-lg border-r-2 hidden sm:block"
+                className="h-full px-4 py-2 hover:cursor-pointer text-lg border-r-2 hidden sm:block dark:border-gray-700"
               >
                 ✕
               </span>
@@ -69,7 +73,7 @@ const Header = ({ clickSettingHandler }) => {
               type="submit"
               className="h-full px-4 py-2 rounded-r-full hover:cursor-pointer"
             >
-              <MdSearch className="text-2xl text-blue-600" />
+              <MdSearch className="text-2xl text-blue-600 dark:text-blue-400" />
             </button>
           </div>
         </form>

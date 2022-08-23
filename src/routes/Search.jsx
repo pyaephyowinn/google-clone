@@ -17,7 +17,7 @@ const Search = () => {
   };
 
   return (
-    <div className="h-screen w-screen max-w-container mx-auto relative px-2 sm:px-4 md:px-0">
+    <div className="min-h-screen w-screen max-w-container mx-auto relative px-2 sm:px-4 lg:px-0 dark:bg-dark dark:text-gray-200">
       {openSetting && (
         // search setting model
         <SearchSetting onCloseSettingClick={onCloseSettingClick} />

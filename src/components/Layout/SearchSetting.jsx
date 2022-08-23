@@ -3,7 +3,7 @@ import {
   setLang,
   setSafeMode,
 } from "../../features/searchSettings/searchSettingsSlice";
-import { setDarkMode } from "../../features/Theme/themeSlice";
+import { setDarkMode } from "../../features/theme/themeSlice";
 
 const SearchSetting = ({ onCloseSettingClick }) => {
   const dispatch = useDispatch();
@@ -35,8 +35,8 @@ const SearchSetting = ({ onCloseSettingClick }) => {
       ></div>
 
       {/* setting model */}
-      <div className="w-72 md:w-96 h-full ml-auto bg-white absolute right-0 px-6 slide">
-        <div className="py-4 flex justify-between items-center">
+      <div className="w-72 md:w-96 h-full ml-auto bg-white absolute right-0 px-6 slide dark:bg-dark">
+        <div className="mt-4 flex justify-between items-center">
           <h2 className="text-2xl">Setting</h2>
           <div
             onClick={onCloseSettingClick}
@@ -65,7 +65,7 @@ const SearchSetting = ({ onCloseSettingClick }) => {
           <div className="flex justify-between text-lg font-light">
             <div>Language</div>
             <div className="w-fit">
-              <select onChange={onLangChange} name="lang" id="lang" value={lang}>
+              <select onChange={onLangChange} name="lang" id="lang" value={lang} className="dark:bg-dark">
                 <option value="lang_en">English</option>
                 <option value="lang_ja">Japanese</option>
                 <option value="lang_ko">Korean</option>
