@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MdSearch, MdOutlineSettings } from "react-icons/md";
 
 const Header = ({ clickSettingHandler }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchTxt, setSearchTxt] = useState("");
+
+  useEffect(() => {
+    setSearchTxt(searchParams.get("q"));
+  }, [setSearchTxt, searchParams]);
 
   const onSearchTxtChange = (e) => {
     setSearchTxt(e.target.value);
@@ -14,21 +20,31 @@ const Header = ({ clickSettingHandler }) => {
 
   const onSettingClick = () => {
     clickSettingHandler();
-  }
+  };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log(searchTxt);
+    setSearchParams({ q: searchTxt });
   };
 
   return (
-    <div className="w-full h-28 grid grid-cols-12 items-center gap-4 px-4 md:px-0">
+    <div className="w-full h-fit pt-4 mb-6 grid grid-cols-12 items-center gap-4">
       <div className="col-span-2">
-        <h1 className="text-3xl text-center">Google</h1>
+        <h1 className="text-3xl md:text-4xl text-center">
+          <span className="text-blue-600">G</span>
+          <span className="text-red-600">o</span>
+          <span className="text-yellow-600">o</span>
+          <span className="text-blue-600">g</span>
+          <span className="text-green-600">l</span>
+          <span className="text-red-600">e</span>
+        </h1>
       </div>
 
-      <div className="col-start-12 col-span-1 relative sm:order-2">
-        <MdOutlineSettings onClick={onSettingClick} className="text-3xl md:text-4xl mx-auto hover:cursor-pointer" />
+      <div className="col-start-11 sm:col-start-12 col-span-2 sm:col-span-1 sm:order-2">
+        <MdOutlineSettings
+          onClick={onSettingClick}
+          className="text-3xl md:text-4xl mx-auto hover:cursor-pointer text-gray-500"
+        />
       </div>
 
       <div className="col-span-full sm:col-span-9 md:col-span-7 pl-4 rounded-full border shadow hover:shadow-lg sm:order-1">
@@ -44,7 +60,7 @@ const Header = ({ clickSettingHandler }) => {
               <span
                 aria-label="Clear"
                 onClick={onClearClick}
-                className="h-full px-4 py-2 hover:cursor-pointer text-lg border-r-2"
+                className="h-full px-4 py-2 hover:cursor-pointer text-lg border-r-2 hidden sm:block"
               >
                 ✕
               </span>
@@ -53,7 +69,7 @@ const Header = ({ clickSettingHandler }) => {
               type="submit"
               className="h-full px-4 py-2 rounded-r-full hover:cursor-pointer"
             >
-              <MdSearch className="text-2xl" />
+              <MdSearch className="text-2xl text-blue-600" />
             </button>
           </div>
         </form>

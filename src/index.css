@@ -16,5 +16,49 @@
       transform: translateX(0);
     }
   }
+
+  input[type="checkbox"] {
+    position: absolute;
+    top: -9999px;
+  }
+
+  input[type="checkbox"] + label {
+    color: red;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  input[type="checkbox"] + label::before {
+    content: "";
+    width: 3rem;
+    height: 1rem;
+    border-radius: 1rem;
+    background-color: #ccc;
+    transition: background-color 200ms ease-in-out;
+  }
+
+  input[type="checkbox"].toggle + label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background: #efefef;
+    transition: background-color 200ms ease-in-out, transform 200ms ease-in-out;
+  }
+
+  input[type="checkbox"].toggle:checked + label::before {
+    background: rgb(147 197 253);
+  }
+
+  input[type="checkbox"].toggle:checked + label::after {
+    background-color: rgb(96 165 250);
+    transform: translateX(100%);
+  }
+
   /* ... */
 }
