@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import AllResults from "../searchResult/AllResults";
+import ImagesResults from "../searchResult/ImagesResults";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Content = () => {
@@ -12,9 +13,8 @@ const Content = () => {
 
       {status === "completed" && (
         <>
-          {type === "search" && <AllResults data={data} />}
-          {type === "image" && <p>Images</p>}
-          {type === "news" && <p>news</p>}
+          {type === "search" && data && <AllResults data={data} />}
+          {type === "image" && data && <ImagesResults data={data} />}
           {type === "video" && <p>video</p>}
         </>
       )}

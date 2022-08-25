@@ -1,26 +1,30 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { MdSearch, MdOutlineSettings } from "react-icons/md";
 
 import { searchResults } from "../../features/results/resultsSlice";
+import { setType } from "../../features/searchSettings/searchSettingsSlice";
 
 const Header = ({ clickSettingHandler }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTxt, setSearchTxt] = useState("");
-  const { status } = useSelector((state) => state.results);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const initialQuery = searchParams.get("q");
-    if (initialQuery && status === "idle") {
+    if (initialQuery) {
+      console.log("initial fetch");
       setSearchTxt(initialQuery);
-      console.log("inside");
+      const type = searchParams.get("type");
+      if (type === "image") {
+        dispatch(setType("image"));
+      } else if (type === "video") {
+        dispatch(setType("video"));
+      }
       dispatch(searchResults(initialQuery));
     }
-    // setSearchTxt(searchParams.get("q"));
-  }, [setSearchTxt, searchParams, dispatch, status]);
+  }, [setSearchTxt, searchParams, dispatch]);
 
   const onSearchTxtChange = (e) => {
     setSearchTxt(e.target.value);
@@ -37,7 +41,7 @@ const Header = ({ clickSettingHandler }) => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     setSearchParams({ q: searchTxt });
-    dispatch(searchResults(searchTxt));
+    // dispatch(searchResults(searchTxt));
   };
 
   return (

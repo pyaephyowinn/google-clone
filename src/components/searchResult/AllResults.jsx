@@ -1,13 +1,16 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import ResultCard from "./ResultCard";
 
 const AllResults = ({ data }) => {
+  console.log(data);
+  const [, setSearchParams] = useSearchParams();
   /*
     fake fetching data on click
     since page pagination if not available on RapidAPI
   */
-  const INITIAL_POSTS_COUNT = 10;
 
+  const INITIAL_POSTS_COUNT = 10;
   const [count, setCount] = useState(INITIAL_POSTS_COUNT);
 
   const posts = data.results.slice(0, count);
@@ -17,6 +20,10 @@ const AllResults = ({ data }) => {
 
   const onFetchClick = () => {
     setCount((prev) => prev + 10);
+  };
+
+  const onAnswerClick = (txt) => {
+    setSearchParams({ q: txt });
   };
 
   return (
@@ -50,6 +57,7 @@ const AllResults = ({ data }) => {
             </span>
             {data.answers.map((ans, index) => (
               <p
+                onClick={onAnswerClick.bind(null, ans)}
                 key={index}
                 className="py-2 border-t-2 text-gray-600 hover:cursor-pointer dark:text-gray-400 dark:border-gray-400"
               >

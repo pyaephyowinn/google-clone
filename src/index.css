@@ -60,5 +60,11 @@
     transform: translateX(100%);
   }
 
+  .custom-container-1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
   /* ... */
 }

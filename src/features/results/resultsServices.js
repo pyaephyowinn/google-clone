@@ -2,7 +2,7 @@ const RapidAPI_URL = "https://google-search3.p.rapidapi.com/api/v1/";
 
 export const fetchResults = async (query, type, safe, lang) => {
   // let url = RapidAPI_URL + type + "/q=" + query + "&num=100" + "&lr=" + lang;
-  let url = `${RapidAPI_URL}${type}/q=${query}&num=100&lr=${lang}&hl=$en`
+  let url = `${RapidAPI_URL}${type}/q=${query}&num=100&lr=${lang}`
 
   if (safe === "active") {
     url += "&safe=active";
@@ -12,7 +12,7 @@ export const fetchResults = async (query, type, safe, lang) => {
     method: "GET",
     headers: {
       "X-User-Agent": "desktop",
-      "X-Proxy-Location": "EU",
+      "X-Proxy-Location": "SG",
       "X-RapidAPI-Key": "ac15cb696bmsh2020639ff50a834p1d299fjsn5d6cd994d1dd",
       "X-RapidAPI-Host": "google-search3.p.rapidapi.com",
     },

@@ -12,7 +12,6 @@ export const searchResults = createAsyncThunk(
   async (queryStr, thunkAPI) => {
     try {
       const { lr, safe, type } = thunkAPI.getState().searchSettings;
-      console.log("queryStr, ", queryStr);
       return await fetchResults(queryStr, type, safe, lr);
     } catch (err) {
       return thunkAPI.rejectWithValue(err || err.message);

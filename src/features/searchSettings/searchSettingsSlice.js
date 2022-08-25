@@ -5,7 +5,7 @@ const safe = localStorage.getItem("safe");
 const initialState = {
   lr: "lang_en", // enum
   safe: safe || "", // enum
-  type: "search", // enum
+  type: "search", // enum ["search", "image", "video", "news"]
 };
 
 export const searchSettingsSlice = createSlice({
