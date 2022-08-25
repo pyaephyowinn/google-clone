@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const lr = localStorage.getItem("safe");
+const safe = localStorage.getItem("safe");
 
 const initialState = {
   lr: "lang_en", // enum
-  safe: lr || "", // enum
+  safe: safe || "", // enum
   type: "search", // enum
 };
 

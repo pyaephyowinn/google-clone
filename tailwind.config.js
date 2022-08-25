@@ -10,6 +10,14 @@ module.exports = {
       colors: {
         dark: "rgba(32,33,35,255)",
       },
+      animation: {
+        'spin-ease': 'spin 1.2s ease infinite',
+      },
+      keyframes: {
+        spin: {
+          '100%': { transform: 'rotate(360deg)' },
+        }
+      }
     },
   },
   plugins: [],

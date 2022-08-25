@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { MdSearch, MdOutlineSettings } from "react-icons/md";
 
+import { searchResults } from "../../features/results/resultsSlice";
+
 const Header = ({ clickSettingHandler }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchTxt, setSearchTxt] = useState(" ");
+  const [searchTxt, setSearchTxt] = useState("");
+  const { status } = useSelector((state) => state.results);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const initialQuery = searchParams.get("q");
-    if (initialQuery) {
+    if (initialQuery && status === "idle") {
       setSearchTxt(initialQuery);
+      console.log("inside");
+      dispatch(searchResults(initialQuery));
     }
     // setSearchTxt(searchParams.get("q"));
-  }, [setSearchTxt, searchParams]);
+  }, [setSearchTxt, searchParams, dispatch, status]);
 
   const onSearchTxtChange = (e) => {
     setSearchTxt(e.target.value);
@@ -29,6 +37,7 @@ const Header = ({ clickSettingHandler }) => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     setSearchParams({ q: searchTxt });
+    dispatch(searchResults(searchTxt));
   };
 
   return (
@@ -51,7 +60,7 @@ const Header = ({ clickSettingHandler }) => {
         />
       </div>
 
-      <div className="col-span-full sm:col-span-9 md:col-span-7 pl-4 rounded-full border shadow hover:shadow-lg sm:order-1 dark:border-gray-600 dark:shadow-gray-900">
+      <div className="col-span-full sm:col-span-9 md:col-span-7 pl-4 lg:py-1 rounded-full border shadow hover:shadow-lg sm:order-1 dark:border-gray-600 dark:shadow-gray-900">
         <form onSubmit={onFormSubmit} className="w-full">
           <div className="flex items-center">
             <input
@@ -64,7 +73,7 @@ const Header = ({ clickSettingHandler }) => {
               <span
                 aria-label="Clear"
                 onClick={onClearClick}
-                className="h-full px-4 py-2 hover:cursor-pointer text-lg border-r-2 hidden sm:block dark:border-gray-700"
+                className="h-full px-4 hover:cursor-pointer text-lg border-r-2 hidden sm:block dark:border-gray-700"
               >
                 ✕
               </span>
