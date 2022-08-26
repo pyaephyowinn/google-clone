@@ -5,7 +5,7 @@ const VideoResults = ({ data }) => {
 
   const filteredData = useMemo(() => {
     return data.results.filter((result) =>
-      result.link.includes("https://www.youtube.com")
+      result.link.includes("https://www.youtube.com/watch")
     );
   }, [data]);
 
@@ -40,7 +40,7 @@ const VideoResults = ({ data }) => {
   return (
     <div className="col-span-12 md:col-start-3 md:col-span-10 xl:col-start-3 xl:col-span-8">
       {postsContent}
-      {count < data.results.length && (
+      {count < filteredData.length && (
         <button
           onClick={onFetchClick}
           className="w-full text-center border-2 border-blue-100 rounded-full py-2 dark:border-gray-700"
@@ -48,7 +48,7 @@ const VideoResults = ({ data }) => {
           More
         </button>
       )}
-      {count >= data.results.length && (
+      {count >= filteredData.length && (
         <div className="w-full text-center border-2 border-blue-100 rounded-full py-2">
           End of results
         </div>
