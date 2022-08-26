@@ -14,7 +14,6 @@ const Header = ({ clickSettingHandler }) => {
   useEffect(() => {
     const initialQuery = searchParams.get("q");
     if (initialQuery) {
-      console.log("initial fetch");
       setSearchTxt(initialQuery);
       const type = searchParams.get("type");
       if (type === "image") {
@@ -23,8 +22,10 @@ const Header = ({ clickSettingHandler }) => {
         dispatch(setType("video"));
       }
       dispatch(searchResults(initialQuery));
+    } else {
+      setSearchParams({ q: "Tesla"});
     }
-  }, [setSearchTxt, searchParams, dispatch]);
+  }, [setSearchTxt, searchParams, dispatch, setSearchParams]);
 
   const onSearchTxtChange = (e) => {
     setSearchTxt(e.target.value);
@@ -40,7 +41,8 @@ const Header = ({ clickSettingHandler }) => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    setSearchParams({ q: searchTxt });
+    const type = searchParams.get("type");
+    setSearchParams({ q: searchTxt, type });
     // dispatch(searchResults(searchTxt));
   };
 
@@ -68,6 +70,7 @@ const Header = ({ clickSettingHandler }) => {
         <form onSubmit={onFormSubmit} className="w-full">
           <div className="flex items-center">
             <input
+              required
               value={searchTxt}
               onChange={onSearchTxtChange}
               type="text"

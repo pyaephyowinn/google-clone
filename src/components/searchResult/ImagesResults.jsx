@@ -8,6 +8,7 @@ const ImagesResults = ({ data }) => {
             className="h-32 md:h-44 pb-2 hover:shadow"
             src={result.image.src}
             alt={result.link.title}
+            loading="lazy"
           />
           <a
             className="hover:underline"
