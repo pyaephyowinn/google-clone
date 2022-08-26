@@ -9,7 +9,7 @@ import { store } from "./app/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename="google-clone/">
     <Provider store={store}>
       <App />
     </Provider>

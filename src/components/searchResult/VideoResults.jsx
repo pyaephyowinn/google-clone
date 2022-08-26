@@ -45,7 +45,7 @@ const VideoResults = ({ data }) => {
           onClick={onFetchClick}
           className="w-full text-center border-2 border-blue-100 rounded-full py-2 dark:border-gray-700"
         >
-          Fetch more
+          More
         </button>
       )}
       {count >= data.results.length && (
