@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import ResultCard from "./ResultCard";
 
 const AllResults = ({ data }) => {
-  console.log(data);
+
   const [, setSearchParams] = useSearchParams();
   /*
     fake fetching data on click

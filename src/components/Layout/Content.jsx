@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import AllResults from "../searchResult/AllResults";
 import ImagesResults from "../searchResult/ImagesResults";
+import VideoResults from "../searchResult/VideoResults";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Content = () => {
@@ -15,7 +16,7 @@ const Content = () => {
         <>
           {type === "search" && data && <AllResults data={data} />}
           {type === "image" && data && <ImagesResults data={data} />}
-          {type === "video" && <p>video</p>}
+          {type === "video" && data && <VideoResults data={data} />}
         </>
       )}
     </main>
