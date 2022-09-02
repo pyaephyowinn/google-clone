@@ -17,7 +17,7 @@ const VideoResults = ({ data }) => {
   console.log(posts);
 
   const postsContent = posts.map((result, index) => (
-    <div className="mb-4 pb-4 border-b-2 border-gray-500 border-gray-300" key={index}>
+    <div className="mb-4 pb-4 border-b-2 border-gray-300 dark:border-gray-500" key={index}>
       <a href={result.link} target="_blank" rel="noopener noreferrer">
         <span className="text-xs">{result.cite?.domain}</span>
         <span className="block text-lg text-blue-600 pb-2 hover:underline dark:text-blue-300">
