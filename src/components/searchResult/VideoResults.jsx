@@ -14,8 +14,6 @@ const VideoResults = ({ data }) => {
 
   const posts = filteredData.slice(0, count);
 
-  console.log(posts);
-
   const postsContent = posts.map((result, index) => (
     <div className="mb-4 pb-4 border-b-2 border-gray-300 dark:border-gray-500" key={index}>
       <a href={result.link} target="_blank" rel="noopener noreferrer">
